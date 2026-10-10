@@ -1,0 +1,5 @@
+import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
+import {AuthProvider,useAuth} from "./context/AuthContext";
+import Home from "./pages/Home"; import Login from "./pages/Login"; import Register from "./pages/Register"; import Marketplace from "./pages/Marketplace"; import Dashboard from "./pages/Dashboard"; import AddCrop from "./pages/AddCrop"; import Orders from "./pages/Orders";
+function Nav(){const {user,logout}=useAuth();return <nav><Link to="/">🌾 AI AgriConnect</Link><span><Link to="/marketplace">Marketplace</Link>{user?<><Link to="/dashboard">Dashboard</Link><button onClick={logout}>Logout</button></>:<><Link to="/login">Login</Link><Link to="/register">Register</Link></>}</span></nav>}
+export default function App(){return <BrowserRouter><AuthProvider><Nav/><Routes><Route path="/" element={<Home/>}/><Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/><Route path="/marketplace" element={<Marketplace/>}/><Route path="/dashboard" element={<Dashboard/>}/><Route path="/add-crop" element={<AddCrop/>}/><Route path="/orders" element={<Orders/>}/></Routes></AuthProvider></BrowserRouter>}
